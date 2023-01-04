@@ -1,47 +1,47 @@
 .main {
-  background: linear-gradient(0deg, #000000 0%, #300E0B 55.74%, #CDAE63 100%);
+    background: linear-gradient(0deg, #000000 0%, #300e0b 55.74%, #cdae63 100%);
 }
 
 .formAdjacentText {
-  color: #FFFFFF;
-  font-family: Georgia;
-  font-size: 36px;
-  letter-spacing: 0;
-  line-height: 45px;
+    color: #ffffff;
+    font-family: Georgia;
+    font-size: 36px;
+    letter-spacing: 0;
+    line-height: 45px;
 }
 
 .curationProcess {
-  color: #FF4500;
-  font-family: Roboto;
-  font-size: 20px;
-  font-weight: 900;
-  text-transform: uppercase;
+    color: #ff4500;
+    font-family: Roboto;
+    font-size: 20px;
+    font-weight: 900;
+    text-transform: uppercase;
 }
 
 .curationTop {
-  color: #7c7b7a;
+    color: #7c7b7a;
 }
 
 .curationBody {
-  color: #7c7b7a;
-  font-size: 13px;
+    color: #7c7b7a;
+    font-size: 13px;
 }
 
 .blockquote {
-  color: #FFFFFF;
-  font-family: Georgia;
-  font-size: 22px;
-  text-align: center;
-  margin-top: 50px;
+    color: #ffffff;
+    font-family: Georgia;
+    font-size: 22px;
+    text-align: center;
+    margin-top: 50px;
 }
 
 .cite {
-  text-align: center;
-  color: #fff;
-  font-family: Roboto;
-  margin-bottom: 5px;
-  font-style: normal;
-  font-weight: 500;
-  display: block;
-  margin-top: 20px;
+    text-align: center;
+    color: #fff;
+    font-family: Roboto;
+    margin-bottom: 5px;
+    font-style: normal;
+    font-weight: 500;
+    display: block;
+    margin-top: 20px;
 }

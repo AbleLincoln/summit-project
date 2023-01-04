@@ -7,7 +7,7 @@ type BackgroundImageProps = {
 
 /**
  * Component for background images using Next's image optimization.
- * 
+ *
  * Make sure parent component has `position: relative`!
  */
 export default function BackgroundImage({ src }: BackgroundImageProps) {
