@@ -10,21 +10,10 @@
     line-height: 45px;
 }
 
-.curationProcess {
-    color: #ff4500;
-    font-family: Roboto;
-    font-size: 20px;
-    font-weight: 900;
-    text-transform: uppercase;
-}
-
-.curationTop {
-    color: #7c7b7a;
-}
-
-.curationBody {
-    color: #7c7b7a;
-    font-size: 13px;
+@media screen and (max-width: 768px) {
+    .formAdjacentText {
+        font-size: 28px;
+    }
 }
 
 .blockquote {

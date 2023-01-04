@@ -6,7 +6,9 @@ import styles from '../styles/Header.module.css'
 
 export default function Header() {
     return (
-        <header className={'container-fluid position-relative px-5 py-6'}>
+        <header
+            className={'container-fluid position-relative px-5 py-5 py-lg-6'}
+        >
             <BackgroundImage src={bg} />
             <div className="container-fluid">
                 <div className="row">
@@ -21,7 +23,7 @@ export default function Header() {
                         <Image
                             src={logo}
                             alt="Summit Logo"
-                            className="fit-contain"
+                            className="fit-contain mb-5"
                         />
                     </div>
                 </div>

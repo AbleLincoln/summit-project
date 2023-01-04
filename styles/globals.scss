@@ -48,6 +48,10 @@ $input-focus-color: #fff;
 }
 
 //-- Bootstrap modifications --//
+.container-fluid {
+    padding: 0;
+}
+
 .invalid-feedback {
     color: #721c24;
     font-family: Roboto;

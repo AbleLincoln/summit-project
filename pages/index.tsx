@@ -3,6 +3,7 @@ import styles from '../styles/Home.module.css'
 
 import Header from '../components/header'
 import NewsletterForm from '../components/newsletterForm'
+import Curation from '../components/curation'
 
 export default function Home() {
     return (
@@ -35,21 +36,15 @@ export default function Home() {
                             events and excursions to Powder Mountain, our 10,000
                             acre ski resort in Northern Utah.
                         </p>
-                        <h2 className={styles.curationProcess}>
-                            Our Curation Process
-                        </h2>
-                        <p className={styles.curationTop}>
-                            Candidates are interviewed to ensure they are:
-                        </p>
-                        <hr />
-                        <p className={styles.curationBody}>
-                            A leader in their field
-                        </p>
-                        <hr />
-                        <p className={styles.curationBody}>
-                            A warm, kind person who resonates with our
-                            principles
-                        </p>
+                        <div className="d-none d-md-block">
+                            <Curation />
+                        </div>
+                    </div>
+                </div>
+
+                <div className="row d-md-none mt-5">
+                    <div className="col-12">
+                        <Curation />
                     </div>
                 </div>
 

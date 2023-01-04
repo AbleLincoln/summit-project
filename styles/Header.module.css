@@ -8,3 +8,10 @@
     text-align: right;
     text-transform: uppercase;
 }
+
+@media screen and (max-width: 768px) {
+    .becomeCommunity {
+        font-size: 28px;
+        text-align: left;
+    }
+}
