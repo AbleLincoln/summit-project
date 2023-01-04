@@ -6,11 +6,19 @@ import { useState } from "react"
 
 export default function NewsletterForm() {
     const [validationStatus, setValidationStatus] = useState('needs-validation') // initially set to needs so that validation doesn't show
+    const [submitted, setSubmitted] = useState(false)
 
     return (
         <>
-            <form className={validationStatus} noValidate onSubmit={(event) => {
-                setValidationStatus('needs')
+            <div className={`${submitted ? '' : 'd-none'} text-center`}>
+                <p><strong>APPLICATION RECEIVED</strong></p>
+                <p>Thank you for your interest in participating in the Summit community. We are looking forward to learning more about you. We appreciate your patience. A member of our team will reach out in the coming weeks with next steps.</p>
+                <p>
+                    This could be the start of something special...
+                </p>
+            </div>
+            
+            <form className={`${validationStatus} ${submitted ? 'd-none' : ''}`} noValidate onSubmit={(event) => {
                 event.preventDefault()
 
                 // const formData
@@ -18,11 +26,15 @@ export default function NewsletterForm() {
                 // const { } = event.target
 
                 const form = event.currentTarget
-                form.checkValidity()
-
-                setValidationStatus('was-validated')
-
-                return false;
+                if (form.checkValidity()) {
+                    // send it
+                    // show success message
+                    setSubmitted(true)
+                } else {
+                    // try again
+                    setValidationStatus('was-validated')
+                    return false
+                }
             }}>
                 <Input type="text" name="first name" label="First Name" placeholder="John" required />
 
