@@ -12,26 +12,29 @@ export default function NewsletterForm() {
         async (event: React.FormEvent<HTMLFormElement>) => {
             event.preventDefault()
 
-            const formData = new FormData(event.currentTarget)
-            const entries = new Map(formData.entries())
-            const obj = Object.fromEntries(entries)
-            const body = JSON.stringify(obj)
-
-            const endpoint = '/api/form'
-
-            const options = {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body,
-            }
-
-            const response = await fetch(endpoint, options)
-
             const form = event.target as HTMLFormElement
             if (form.checkValidity()) {
                 // send it
+                const formData = new FormData(event.currentTarget)
+
+                // create our json object
+                const obj = Object.fromEntries(formData)
+
+                // interest can have multiple values so we join them
+                const interest = formData.getAll('interest').join(',')
+                obj.interest = interest
+
+                const body = JSON.stringify(obj)
+                const endpoint = '/api/form'
+                const options = {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body,
+                }
+                const response = await fetch(endpoint, options)
+
                 // show success message
                 setSubmitted(true)
             } else {
@@ -65,7 +68,7 @@ export default function NewsletterForm() {
             >
                 <Input
                     type="text"
-                    name="first name"
+                    name="first_name"
                     label="First Name"
                     placeholder="John"
                     required
@@ -73,7 +76,7 @@ export default function NewsletterForm() {
 
                 <Input
                     type="text"
-                    name="last name"
+                    name="last_name"
                     label="Last Name"
                     placeholder="Johnson"
                     required
@@ -89,7 +92,7 @@ export default function NewsletterForm() {
 
                 <Input
                     type="tel"
-                    name="telephone"
+                    name="phone"
                     label="Phone Number"
                     placeholder="8005551234"
                     required
@@ -113,17 +116,18 @@ export default function NewsletterForm() {
 
                 <Input
                     type="text"
-                    name="link us"
+                    name="link"
                     label="Link us to something that tells us about you (Linkedin, personal website, company project, etc.)"
                     placeholder="example.com"
                 />
 
                 <Checkboxes
+                    name="interest"
                     options={['Summit Junto', 'Summit Series Events']}
                 />
 
                 <Select
-                    name="heard_of"
+                    name="referral"
                     label="How did you hear about Summit?*"
                     options={[
                         'Summit Community Member',

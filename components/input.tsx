@@ -23,7 +23,9 @@ export default function Input({
             const { typeMismatch, valueMissing } = validity
 
             if (valueMissing)
-                return setErrorMessage(`The ${name} field is required.`)
+                return setErrorMessage(
+                    `The ${label.toLowerCase()} field is required.`
+                )
             if (typeMismatch && type === 'email')
                 return setErrorMessage(
                     'The email must be a valid email address.'

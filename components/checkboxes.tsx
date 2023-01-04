@@ -1,8 +1,9 @@
 type CheckboxesProps = {
+    name: string
     options: string[]
 }
 
-export default function Checkboxes({ options }: CheckboxesProps) {
+export default function Checkboxes({ name, options }: CheckboxesProps) {
     return (
         <div className="form-group">
             <label>I am interested in learning more about:</label>
@@ -13,6 +14,7 @@ export default function Checkboxes({ options }: CheckboxesProps) {
                         <input
                             className="form-check-input"
                             type="checkbox"
+                            name={name}
                             value={option}
                         />
                         {option}

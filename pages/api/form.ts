@@ -1,16 +1,40 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
+import { createClient } from '@supabase/supabase-js'
+import { Database } from '../../types/supabase'
 
-type Data = {
-    name: string
-}
+const supabaseUrl = 'https://pekztqfzrmnuqjgpqaqd.supabase.co'
+const supabaseKey = process.env.PRIVATE_SUPABASE_SERVICE_KEY as string
+const supabase = createClient<Database>(supabaseUrl, supabaseKey)
 
-export default function handler(
+export default async function handler(
     req: NextApiRequest,
-    res: NextApiResponse<Data>
+    res: NextApiResponse
 ) {
-    const body = req.body
+    // pick off these values for safety (also gives us typing for insert)
+    const {
+        first_name,
+        last_name,
+        email,
+        phone,
+        company,
+        title,
+        link,
+        interest,
+        referral,
+    } = req.body
 
-    console.log({ body })
+    const { error } = await supabase.from('newsletter').insert({
+        first_name,
+        last_name,
+        email,
+        phone,
+        company,
+        title,
+        link,
+        interest,
+        referral,
+    })
 
-    res.status(200).json(body)
+    if (error) res.status(500).send('I broke 😞')
+    res.status(200).send(`user ${first_name} ${last_name} inserted`)
 }
