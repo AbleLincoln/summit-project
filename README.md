@@ -21,6 +21,10 @@ The form POSTs the data to a [Next API route](https://nextjs.org/docs/api-routes
 
 ![supabase](supabase.png)
 
+## Design Changes
+
+I tried to keep the design as consistent with the original as possible. The one place where I deviated was with input labels. The live site uses placeholder text for input labels. I think this can cause some accessibility issues. When the user begins to type, the form label goes away. In my version I decided to simply have the labels above the inputs.
+
 ## Weird Things
 
 I like Next, but the framework has some interesting ways of doing things. This forced me into strange solutions which I have mixed feelings on.
