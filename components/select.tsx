@@ -19,10 +19,10 @@ export default function Select({
 
     const updateStyles = useCallback(
         (event: React.ChangeEvent<HTMLSelectElement>) => {
-            if (event.target.value === defaultOpt) setIsPlaceholder(true)
+            if (!event.target.value) setIsPlaceholder(true)
             else setIsPlaceholder(false)
         },
-        [defaultOpt]
+        []
     )
 
     return (

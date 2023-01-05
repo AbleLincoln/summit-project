@@ -6,9 +6,7 @@ import styles from '../styles/Header.module.css'
 
 export default function Header() {
     return (
-        <header
-            className={'container-fluid position-relative px-5 py-5 py-lg-6'}
-        >
+        <header className="container-fluid position-relative px-5 py-5 py-lg-6">
             <BackgroundImage src={bg} />
             <div className="container-fluid">
                 <div className="row">

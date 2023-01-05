@@ -4,17 +4,25 @@ import Select from './select'
 import OptIn from './optin'
 import React, { useCallback, useState } from 'react'
 
-export default function NewsletterForm() {
+type NewsletterFormProps = {
+    className?: string
+    onSuccess?: () => void
+}
+
+export default function NewsletterForm({
+    className,
+    onSuccess = () => {},
+}: NewsletterFormProps) {
     const [validationStatus, setValidationStatus] = useState('needs-validation') // initially set to needs so that validation doesn't show
-    const [submitted, setSubmitted] = useState(false)
 
     const handleSubmit = useCallback(
         async (event: React.FormEvent<HTMLFormElement>) => {
             event.preventDefault()
 
             const form = event.target as HTMLFormElement
-            if (form.checkValidity()) {
-                // send it
+            const isValid = form.checkValidity()
+            if (isValid) {
+                // collect data
                 const formData = new FormData(event.currentTarget)
 
                 // create our json object
@@ -24,6 +32,7 @@ export default function NewsletterForm() {
                 const interest = formData.getAll('interest').join(',')
                 obj.interest = interest
 
+                // send to our api
                 const body = JSON.stringify(obj)
                 const endpoint = '/api/form'
                 const options = {
@@ -33,36 +42,28 @@ export default function NewsletterForm() {
                     },
                     body,
                 }
-                const response = await fetch(endpoint, options)
 
-                // show success message
-                setSubmitted(true)
+                try {
+                    await fetch(endpoint, options)
+                } catch (error) {
+                    return false
+                }
+
+                // fire success event
+                onSuccess()
             } else {
-                // try again
+                // tell user to fix errors
                 setValidationStatus('was-validated')
                 return false
             }
         },
-        []
+        [onSuccess]
     )
 
     return (
         <>
-            <div className={`${submitted ? '' : 'd-none'} text-center`}>
-                <p>
-                    <strong>APPLICATION RECEIVED</strong>
-                </p>
-                <p>
-                    Thank you for your interest in participating in the Summit
-                    community. We are looking forward to learning more about
-                    you. We appreciate your patience. A member of our team will
-                    reach out in the coming weeks with next steps.
-                </p>
-                <p>This could be the start of something special...</p>
-            </div>
-
             <form
-                className={`${validationStatus} ${submitted ? 'd-none' : ''}`}
+                className={`${className} ${validationStatus}`}
                 noValidate
                 onSubmit={handleSubmit}
             >

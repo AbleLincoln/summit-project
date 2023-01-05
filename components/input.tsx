@@ -1,4 +1,4 @@
-import React, { useCallback, useRef, useState } from 'react'
+import React, { useCallback, useState } from 'react'
 
 type InputProps = {
     type: 'text' | 'tel' | 'email'
@@ -31,7 +31,7 @@ export default function Input({
                     'The email must be a valid email address.'
                 )
         },
-        [name, type]
+        [type, label]
     )
 
     return (

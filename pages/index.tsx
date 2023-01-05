@@ -1,11 +1,14 @@
 import Head from 'next/head'
-import styles from '../styles/Home.module.css'
+import { useState } from 'react'
 
+import styles from '../styles/Home.module.css'
 import Header from '../components/header'
 import NewsletterForm from '../components/newsletterForm'
 import Curation from '../components/curation'
+import Success from '../components/success'
 
 export default function Home() {
+    const [submitted, setSubmitted] = useState(false)
     return (
         <>
             <Head>
@@ -20,12 +23,17 @@ export default function Home() {
                 />
                 <link rel="icon" href="/favicon.ico" />
             </Head>
+
             <Header />
 
             <main className={`container-fluid pb-6 px-5 ${styles.main}`}>
                 <div className="row">
                     <div className="col-12 col-md-5 offset-md-1 col-xl-4 offset-xl-2 order-2 order-md-1">
-                        <NewsletterForm />
+                        <Success className={submitted ? '' : 'd-none'} />
+                        <NewsletterForm
+                            className={submitted ? 'd-none' : ''}
+                            onSuccess={() => setSubmitted(true)}
+                        />
                     </div>
 
                     <div className="col-12 col-md-4 col-xl-3 order-1 order-md-2">
