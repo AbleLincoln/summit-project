@@ -14,6 +14,7 @@ export default function NewsletterForm({
     onSuccess = () => {},
 }: NewsletterFormProps) {
     const [validationStatus, setValidationStatus] = useState('needs-validation') // initially set to needs so that validation doesn't show
+    const [isLoading, setIsLoading] = useState(false)
 
     const handleSubmit = useCallback(
         async (event: React.FormEvent<HTMLFormElement>) => {
@@ -22,6 +23,8 @@ export default function NewsletterForm({
             const form = event.target as HTMLFormElement
             const isValid = form.checkValidity()
             if (isValid) {
+                setIsLoading(true)
+
                 // collect data
                 const formData = new FormData(event.currentTarget)
 
@@ -46,6 +49,7 @@ export default function NewsletterForm({
                 try {
                     await fetch(endpoint, options)
                 } catch (error) {
+                    setIsLoading(false)
                     return false
                 }
 
@@ -147,8 +151,23 @@ export default function NewsletterForm({
 
                 <OptIn />
 
-                <button type="submit" className="btn btn-primary btn-block">
-                    SUBMIT
+                <button
+                    type="submit"
+                    className="btn btn-primary btn-block"
+                    disabled={isLoading}
+                >
+                    {isLoading ? (
+                        <>
+                            <span
+                                className="spinner-border spinner-border-sm"
+                                role="status"
+                                aria-hidden="true"
+                            ></span>
+                            <span className="sr-only">Loading...</span>
+                        </>
+                    ) : (
+                        'SUBMIT'
+                    )}
                 </button>
             </form>
         </>
